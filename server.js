@@ -258,8 +258,8 @@ app.post('/customers/sessions', async (req, res) => {
 
 app.post('/customers/sessions/:customerSession/payment-methods', async (req, res) => {
   const customerSession = req.params.customerSession
-  const paymentMethodType = req.query.paymentMethodType || 'NEQUI'
-  const country = req.query.country || 'CO'
+  const paymentMethodType = 'CARD'
+  const country = 'CO'
 
   const response = await fetch(
     `${YUNO_API_URL}/v1/customers/sessions/${customerSession}/payment-methods`,

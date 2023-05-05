@@ -1,14 +1,14 @@
 import { getPublicApiKey } from "./api.js"
 
-const checkoutSession = '123'
-const customerSession = 'db7d5c88-c6f2-4e7a-8e1d-055c6c5949aa'
-const countryCode = 'CO'
 
 async function initFullEnrollmentImp () {
-  const publicApiKey = await getPublicApiKey()
+  const publicApiKey = 'sandbox_gAAAAABjtxiRutGlhcbHOQx77b9Pi5ITWjqRofanb0OlRsCsyUGrJkFTyfE-p_TnWAa5RuU-B4DpPDt69bxHdct3KAmtZoxtTV8DWBOZmzDzfNiPsNw0GDpeVJemoKX734zjDYyLSHdlHY0_6iPF4lrF_greF9JHeKNkMCApivcaKn6FXz2ce34='
   // start Yuno SDK
   const yuno = Yuno.initialize(publicApiKey)
-  console.log("🚀 , file: fullEnrollmentImp.js:10 , initFullEnrollmentImp , yuno", yuno)
+
+  const customerSession = 'fe873268-499f-4b36-9f62-68cdcd567ab0'
+  const countryCode='CO'
+  
   yuno.mountEnrollmentLite({
     customerSession,
     /**

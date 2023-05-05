@@ -3,8 +3,8 @@ import { getCheckoutSession, createPayment, getPublicApiKey } from "./api.js"
 async function initCheckoutLite() {
   // get checkout session from merchan back
   //const { checkout_session: checkoutSession, country: countryCode } = await getCheckoutSession()
-  const checkoutSession='c598759c-1f30-4b11-9ce4-132d127b5601'
-  const countryCode='CO'
+  const checkoutSession='3f899415-04e1-4cfc-9d6b-d608036fd963'
+  const countryCode='GT'
   /**
    * this should be provided by the merchant
    * can be one of 'BANCOLOMBIA_TRANSFER' | 'PIX' | 'ADDI' | 'NU_PAY' | 'MERCADO_PAGO_CHECKOUT_PRO | CARD
