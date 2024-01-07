@@ -3,7 +3,7 @@ import { getCustomerSession, createEnrollment, getPublicApiKey } from './api.js'
 async function initEnrollmentLite() {
   // get customer session from merchan back
   //const { customer_session: customerSession, country: countryCode } = await getCustomerSession()
-  const customerSession = "bf7b9919-9db0-4b4f-8b5a-07594d6f4116"
+  const customerSession = "b9553f48-a670-4f55-a8c8-81a00706cf3a"
   const countryCode = "GT"
   const publicApiKey = 'sandbox_gAAAAABjtxiRutGlhcbHOQx77b9Pi5ITWjqRofanb0OlRsCsyUGrJkFTyfE-p_TnWAa5RuU-B4DpPDt69bxHdct3KAmtZoxtTV8DWBOZmzDzfNiPsNw0GDpeVJemoKX734zjDYyLSHdlHY0_6iPF4lrF_greF9JHeKNkMCApivcaKn6FXz2ce34='
   // console.log(":rocket: , file: enrollment-lite.js:6 , initEnrollmentLite , countryCode", countryCode)

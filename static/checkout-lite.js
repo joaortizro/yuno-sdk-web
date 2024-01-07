@@ -1,76 +1,55 @@
 import { getCheckoutSession, createPayment, getPublicApiKey } from "./api.js"
 
+const myAPI = (time)=> new Promise((resolve)=> {
+  window.setTimeout(()=> {
+    resolve('payment done')
+  },time * 1000)
+})
+
+
+
 async function initCheckoutLite() {
   // get checkout session from merchan back
   //const { checkout_session: checkoutSession, country: countryCode } = await getCheckoutSession()
-  const checkoutSession='3f899415-04e1-4cfc-9d6b-d608036fd963'
+  const checkoutSession="9974ff34-94dc-4422-8f5a-c723edcdfba2"
   const countryCode='GT'
-  /**
-   * this should be provided by the merchant
-   * can be one of 'BANCOLOMBIA_TRANSFER' | 'PIX' | 'ADDI' | 'NU_PAY' | 'MERCADO_PAGO_CHECKOUT_PRO | CARD
-   */
-  const PAYMENT_METHOD_TYPE = 'CARD'
-  // this should be provided by the merchant
-  const VAULTED_TOKEN = null
+  const publicApiKey = 'sandbox_gAAAAABjtxiRutGlhcbHOQx77b9Pi5ITWjqRofanb0OlRsCsyUGrJkFTyfE-p_TnWAa5RuU-B4DpPDt69bxHdct3KAmtZoxtTV8DWBOZmzDzfNiPsNw0GDpeVJemoKX734zjDYyLSHdlHY0_6iPF4lrF_greF9JHeKNkMCApivcaKn6FXz2ce34='
 
-  // get api key
-  const publicApiKey = await getPublicApiKey()
-
-  // start Yuno SDK
   const yuno = Yuno.initialize(publicApiKey)
-  /**
-   * checkout configuration
-   */
   yuno.startCheckout({ 
     checkoutSession,
-    // element where the SDK will be mount on
     elementSelector: '#root', 
-    /**
-     * country can be one of CO, BR, CL, PE, EC, UR, MX
-     */
     countryCode,
-    /**
-      * language can be one of es, en, pt
-      */
+    showLoading: true,
     language: 'es',
-    /**
-     * calback is called when one time token is created,
-     * merchant should create payment back to back
-     * @param { oneTimeToken: string } data 
-     */
-    async yunoCreatePayment(oneTimeToken) {
-      //await createPayment({ oneTimeToken, checkoutSession })
 
-      /**
-       * call only if the SDK needs to continue the payment flow
-       */
-      yuno.continuePayment()
+    async yunoCreatePayment(oneTimeToken) {
+      console.log("🚀 , file: checkout-lite.js:40 , yunoCreatePayment , oneTimeToken:", oneTimeToken)
+      //await createPayment({ oneTimeToken, checkoutSession })
+      //await myAPI(30)
+      //yuno.continuePayment()
     },
-    /**
-     * 
-     * @param {'READY_TO_PAY' | 'CREATED' | 'PAYED' | 'REJECTED' | 'CANCELLED' | 'ERROR' | 'DECLINED' | 'PENDING' | 'EXPIRED' | 'VERIFIED' | 'REFUNDED'} data
-     */
+
     yunoPaymentResult(data) {
       console.log('yunoPaymentResult', data)
+      window.location.replace('https://www.google.com/')
+      // if we enter here its most likely due to there was no challenge 
+      // ans we should redirect when DATA is PENDING
     },
-    /**
-     * @param { error: 'CANCELED_BY_USER' | any }
-     */
+
     yunoError: (error) => {
-      console.log('There was an error', error)
+      console.log('There was an error, yunoError, pls redirect', error)
+      window.location.replace('https://www.youtube.com/')
     },
   })
 
   yuno.mountCheckoutLite({
-    /**
-     * can be one of 'BANCOLOMBIA_TRANSFER' | 'PIX' | 'ADDI' | 'NU_PAY' | 'MERCADO_PAGO_CHECKOUT_PRO
-     */
-    paymentMethodType: PAYMENT_METHOD_TYPE,
-    /**
-     * Vaulted token related to payment method type
-     */
-    valutedToken: VAULTED_TOKEN,
+    paymentMethodType: 'CARD',
+    vaultedToken: '2fb94590-eb13-4f7f-9978-95102dcd44ec',
   })
 }
 
 window.addEventListener('load', initCheckoutLite)
+
+// NO CHALLENGE TOKEN 2fb94590-eb13-4f7f-9978-95102dcd44ec
+// Challenge 2803d769-19a9-470c-9de6-0a9b16fa41ab

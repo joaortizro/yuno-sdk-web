@@ -2,13 +2,13 @@ import { getPublicApiKey } from './api.js'
 
 async function initStatus() {
   // get api key
-  const publicApiKey = await getPublicApiKey()
-
+  //const publicApiKey = await getPublicApiKey()
+  const publicApiKey = 'sandbox_gAAAAABjtxiRutGlhcbHOQx77b9Pi5ITWjqRofanb0OlRsCsyUGrJkFTyfE-p_TnWAa5RuU-B4DpPDt69bxHdct3KAmtZoxtTV8DWBOZmzDzfNiPsNw0GDpeVJemoKX734zjDYyLSHdlHY0_6iPF4lrF_greF9JHeKNkMCApivcaKn6FXz2ce34='
   // start Yuno SDK
   const yuno = Yuno.initialize(publicApiKey)
 
-  const checkoutSession = '438413b7-4921-41e4-b8f3-28a5a0141638'
-
+  const checkoutSession = '49ea4084-6e8d-4086-8ac1-c6eac4ac40ed'
+  
   /**
    * Call method that returns status
    * 
